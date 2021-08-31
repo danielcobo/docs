@@ -1,0 +1,2 @@
+# docs
+Automate repo documentation
