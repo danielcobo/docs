@@ -1,0 +1,31 @@
+{
+  "name": "@danielcobo/docs",
+  "version": "1.0.0",
+  "description": "Automate repo documentation",
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "jest --collectCoverage",
+    "mutation": "npx stryker run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielcobo/docs.git"
+  },
+  "keywords": [
+    "markdown",
+    "readme",
+    "license"
+  ],
+  "author": "Daniel Cobo",
+  "license": "MIT",
+  "devDependencies": {
+    "@stryker-mutator/core": "^5.4.0",
+    "jest": "^27.1.0"
+  },
+  "dependencies": {
+    "@danielcobo/fs": "^1.1.2",
+    "comment-parser": "^1.2.4",
+    "micromatch": "^4.0.4"
+  },
+  "type": "module"
+}
