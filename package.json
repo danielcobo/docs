@@ -5,7 +5,8 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "jest --collectCoverage",
-    "mutation": "npx stryker run"
+    "mutation": "npx stryker run",
+    "testing" : "jest --watch --collectCoverage"
   },
   "repository": {
     "type": "git",
