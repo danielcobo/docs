@@ -14,7 +14,7 @@ const fs = require('@danielcobo/fs');
  * @param {Array.String} paths
  * @returns {RawFile}
  */
-const readFiles = async function readFiles(paths) {
+module.exports = async function readFiles(paths) {
   const contents = await Promise.all(
     paths.map(function (filepath) {
       return fs.read(filepath);
@@ -27,5 +27,3 @@ const readFiles = async function readFiles(paths) {
 
   return files;
 };
-
-module.exports = readFiles;
