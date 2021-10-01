@@ -4,20 +4,10 @@ const process = require('process');
 const path = require('path');
 
 test('Test readFiles.js', async function () {
-  const all = await fs.read('./src/');
-  const filepaths = all.files.map(function (file) {
-    return process.cwd() + path.sep + file;
-  });
-  const contents = await Promise.all(
-    filepaths.map(function (filepath) {
-      return fs.read(filepath);
-    })
-  );
-  const expectedFiles = filepaths.map(function (path, i) {
-    return { path: path, content: contents[i] };
-  });
+  const path = './src/readPaths.js';
 
-  const files = await readFiles();
+  const files = await readFiles([path]);
+  const expectedFiles = [{ path: path, content: await fs.read(path) }];
 
   expect(files).toStrictEqual(expectedFiles);
 });
