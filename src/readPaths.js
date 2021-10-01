@@ -7,7 +7,7 @@ const path = require('path');
  * Returns paths of all relevant files
  * @private
  */
-const readPaths = async function getPaths() {
+const readPaths = async function readPaths() {
   //Read tree
   const absoluteCurrentPath = process.cwd();
   //const currentPath = path.basename(absoluteCurrentPath);
