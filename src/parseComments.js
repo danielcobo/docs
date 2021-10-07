@@ -62,7 +62,6 @@ const getDescription = function getDescription(comment) {
 
 /**
  * @typedef {Object} Tag
- * @property {string} tag - tag type
  * @property {string} name - tag name
  * @property {string} type - tag data type
  * @property {boolean} optional - tag data type
