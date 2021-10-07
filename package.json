@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --collectCoverage",
     "mutation": "npx stryker run",
-    "testing" : "jest --watch --collectCoverage"
+    "testing": "jest --watch --collectCoverage"
   },
   "repository": {
     "type": "git",
