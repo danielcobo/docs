@@ -41,8 +41,10 @@ const isPublic = function isPublic(comment) {
  * @returns {string} - clean and formatted description text
  */
 const cleanDescription = function cleanDescription(description) {
-  const des = description.replace(/^\s*-\s*/, '').replace(/\s*$/, '');
-  return des[0].toLocaleUpperCase + des.slice(1);
+  if (description) {
+    const des = description.replace(/^\s*-\s*/, '').replace(/\s*$/, '');
+    return des[0].toLocaleUpperCase() + des.slice(1);
+  }
 };
 
 /**
@@ -53,7 +55,9 @@ const cleanDescription = function cleanDescription(description) {
  */
 const getDescription = function getDescription(comment) {
   let description = comment.description;
-  const typedef = tags.find((tag) => tag.tag.toLowerCase() === 'typedef');
+  const typedef = comment.tags.find(
+    (tag) => tag.tag.toLowerCase() === 'typedef'
+  );
   if (typedef && typedef.description) {
     description = typedef.description;
   }
@@ -119,7 +123,7 @@ const getParams = function getParams(tags) {
  * @returns {Array.Property}
  */
 const getProperties = function getProperties(tags) {
-  return cleanTags(tags, 'param').map(function (tag) {
+  return cleanTags(tags, 'property').map(function (tag) {
     delete tag.default;
     return tag;
   });
@@ -138,10 +142,12 @@ const getProperties = function getProperties(tags) {
  */
 const getReturns = function getReturns(tags) {
   tag = tags.find((tag) => tag.tag.toLowerCase() === 'returns');
-  return {
-    type: tag.type,
-    description: cleanDescription(tag.description),
-  };
+  if (tag) {
+    return {
+      type: tag.type,
+      description: cleanDescription(tag.description),
+    };
+  }
 };
 
 /**
@@ -185,15 +191,19 @@ module.exports = function parseComments(files, packageName) {
         };
 
         let name;
-        const alias = tags.find((tag) => tag.tag.toLowerCase() === 'alias');
-        const typedef = tags.find((tag) => tag.tag.toLowerCase() === 'typedef');
+        const alias = comment.tags.find(
+          (tag) => tag.tag.toLowerCase() === 'alias'
+        );
+        const typedef = comment.tags.find(
+          (tag) => tag.tag.toLowerCase() === 'typedef'
+        );
         if (alias && alias.name) {
           name = alias.name + '()';
         } else if (typedef && typedef.name) {
           name = typedef.name;
         } else {
           impliedName.push(comment);
-          if (filename === 'index') {
+          if (filename.replace(/\.[^.]*$/, '') === 'index') {
             name = packageName + '()';
           } else {
             name = filename + '()';
@@ -212,10 +222,10 @@ module.exports = function parseComments(files, packageName) {
 
     if (impliedName.length > 1) {
       throw new Error(`
-        There can only be 1 implied name per file.\n\r 
-        Already implied:\n\r
-        File: ${file.path}\n\r
-        Line: ${impliedName[0].source[0].line}`);
+There can only be 1 implied name per file.
+Already implied:
+File: ${file.path}
+Line: ${impliedName[0].source[0].number}`);
     }
   });
 
