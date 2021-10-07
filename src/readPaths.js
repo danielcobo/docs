@@ -19,7 +19,7 @@ module.exports = async function readPaths() {
     '!**/node_modules/**',
     '!**/coverage/**',
     '!**/reports/**',
-    '!**/.stryker-tmp/**',
+    '!**/\.stryker-tmp/**',
   ];
   const paths = micromatch(tree.files, globs);
 
