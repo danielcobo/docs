@@ -16,10 +16,11 @@ module.exports = async function readPaths() {
   //Filter by glob
   const globs = [
     '**/*.js',
+    '!**/*.test.js',
     '!**/node_modules/**',
     '!**/coverage/**',
     '!**/reports/**',
-    '!**/\.stryker-tmp/**',
+    '!**/.stryker-tmp/**',
   ];
   const paths = micromatch(tree.files, globs);
 
