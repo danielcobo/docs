@@ -172,7 +172,7 @@ const getReturns = function getReturns(tags) {
  * @param {string} packageName - package name from package.json
  * @returns {Array.Definition} - array of all definitions
  */
-module.exports = function parseComments(files, packageName) {
+module.exports = async function parseComments(files, packageName) {
   const definitions = [];
 
   files.map(function (file) {
