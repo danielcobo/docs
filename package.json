@@ -6,7 +6,10 @@
   "scripts": {
     "test": "jest --collectCoverage",
     "mutation": "npx stryker run",
-    "testing": "jest --watch --collectCoverage"
+    "testing": "jest --watch --collectCoverage --runInBand"
+  },
+  "bin": {
+    "docs": "bin/docs"
   },
   "repository": {
     "type": "git",
@@ -27,6 +30,7 @@
   "dependencies": {
     "@danielcobo/fs": "^1.1.2",
     "comment-parser": "^1.2.4",
+    "handlebars": "^4.7.7",
     "micromatch": "^4.0.4"
   }
 }
