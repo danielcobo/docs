@@ -20,9 +20,9 @@ module.exports = async function readPaths() {
     '!**/node_modules/**',
     '!**/coverage/**',
     '!**/reports/**',
-    '!**/.stryker-tmp/**',
+    '!.stryker-tmp/**',
   ];
-  const paths = micromatch(tree.files, globs);
+  const paths = micromatch(tree.files, globs, { dot: true });
 
   //Glob module normalizes path separators to /,
   //so we revert to default using path.normalize
