@@ -33,25 +33,27 @@ module.exports = async function parseTemplate(data, templateFile) {
   }
 
   Handlebars.registerHelper('typecode', function (types) {
-    return types
-      .split('|')
-      .map(function (type) {
-        const typeName = type
-          .slice(type.lastIndexOf('.') + 1)
-          .replace(/[<>\[\]]/g, '') //Account for Object[], Array.<Object>, Array.Object
-          .toLowerCase();
-        const typedef = data.definition.find(function (def) {
-          return def.isTypedef && def.name.toLowerCase() === typeName;
-        });
-        let typecode = '`' + type + '`';
-        if (typedef) {
-          typecode =
-            `[${typecode}]` +
-            `(#${typedef.name}--${typedef.type})`.toLowerCase();
-        }
-        return typecode;
-      })
-      .join('|');
+    if (types !== undefined) {
+      return types
+        .split('|')
+        .map(function (type) {
+          const typeName = type
+            .slice(type.lastIndexOf('.') + 1)
+            .replace(/[<>\[\]]/g, '') //Account for Object[], Array.<Object>, Array.Object
+            .toLowerCase();
+          const typedef = data.definition.find(function (def) {
+            return def.isTypedef && def.name.toLowerCase() === typeName;
+          });
+          let typecode = '`' + type + '`';
+          if (typedef) {
+            typecode =
+              `[${typecode}]` +
+              `(#${typedef.name}--${typedef.type})`.toLowerCase();
+          }
+          return typecode;
+        })
+        .join('|');
+    }
   });
 
   const parser = Handlebars.compile(template);
