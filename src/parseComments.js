@@ -93,6 +93,7 @@ const cleanTags = function cleanTags(tags, tagName) {
 
 /**
  * @typedef {Object} Param - function parameter
+ * @public
  * @property {string} name - parameter name
  * @property {string} type - argument data type
  * @property {string} description - parameter description
@@ -111,6 +112,7 @@ const getParams = function getParams(tags) {
 
 /**
  * @typedef {Object} Property - type definition property
+ * @public
  * @property {string} name - property name
  * @property {string} type - property value data type
  * @property {string} description - property description
@@ -130,7 +132,16 @@ const getProperties = function getProperties(tags) {
 };
 
 /**
+ * @typedef {Object} Source
+ * @public
+ * @property {number} line - source line number
+ * @property {string} path - source file path
+ * @property {string} url - relative source file url
+ */
+
+/**
  * @typedef {Object} ReturnValue
+ * @public
  * @property {string} type - data type of return value
  * @property {string} description - description of return value
  */
@@ -151,19 +162,16 @@ const getReturns = function getReturns(tags) {
 };
 
 /**
- * @typedef {Object} Source
- * @property {number} line - source line number
- * @property {string} path - source file path
- */
-
-/**
  * @typedef {Object} Definition
+ * @public
  * @property {string} description - type/function description text
  * @property {string} name - type/function name
+ * @property {string} type - type (i.e. function, method, object...)
+ * @property {boolean} isTypedef - true if typedef (else assume function)
  * @property {Array.Param} param - function parameters
  * @property {Array.Property} property - type/function properties
  * @property {ReturnValue} returns - function return value
- * @property {Array.Source} source - type/function definition source
+ * @property {Source} source - type/function definition source
  */
 
 /**
@@ -187,10 +195,12 @@ module.exports = async function parseComments(files, packageName) {
       .map(function (comment) {
         let source = {
           path: file.path,
+          url: path.relative(process.cwd(), file.path).replace(/\\+/g, '/'),
           line: comment.source[0].number + 1,
         };
 
         let name;
+        let type;
         const alias = comment.tags.find(
           (tag) => tag.tag.toLowerCase() === 'alias'
         );
@@ -198,21 +208,27 @@ module.exports = async function parseComments(files, packageName) {
           (tag) => tag.tag.toLowerCase() === 'typedef'
         );
         if (alias && alias.name) {
-          name = alias.name + '()';
+          name = '.' + alias.name + '()';
+          type = 'method';
         } else if (typedef && typedef.name) {
           name = typedef.name;
+          type = typedef.type;
         } else {
           impliedName.push(comment);
           if (filename.replace(/\.[^.]*$/, '') === 'index') {
             name = packageName + '()';
+            type = 'function';
           } else {
-            name = filename + '()';
+            name = '.' + filename.replace(/\.[^.]+$/, '') + '()';
+            type = 'method';
           }
         }
 
         definitions.push({
           description: getDescription(comment),
           name: name,
+          type: type,
+          isTypedef: typedef !== undefined,
           param: getParams(comment.tags),
           property: getProperties(comment.tags),
           returns: getReturns(comment.tags),
@@ -229,5 +245,5 @@ Line: ${impliedName[0].source[0].number}`);
     }
   });
 
-  return definitions;
+  return definitions.reverse();
 };
