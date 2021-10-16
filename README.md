@@ -29,15 +29,51 @@ To use this package you will need:
 
 ## 🚀 Quickstart
 
-### Install
+### Setup
 
+In the terminal run:
 ```cli
 npm install @danielcobo/docs -D
+```
+<sub>**Note:** Don't forget to init your package using `npm init` first.</sub>
+
+In your `package.json` file add `"docs": "docs"` to the list of scripts.
+```JSON
+  "scripts": {
+    "docs": "docs"
+  },
 ```
 
 <sub>**Note:** In case you're wondering, **@danielcobo/** is just a [namespace scope](https://docs.npmjs.com/about-scopes/) - an NPM feature. Scopes make it easier to name modules and improve [security](https://github.blog/2021-02-12-avoiding-npm-substitution-attacks/).</sub>
 
-For details see documentation below.
+### Usage
+
+**Important: running the code below will overwrite existing README.md and LICENSE.md**
+
+In the terminal run:
+```cli
+npm run docs
+```
+If there are no template files (README.hbs and LICENSE.hbs) a boilerplate will be generated to get you started.
+
+Do not edit the `.md` files directly, instead edit the `.hbs` templates. After that run `npm run docs` to regenerate the documentation.
+
+The data passed to templates consists of `definition` and `repo`.
+`definition` is an array of definitions based on JSDoc style comments in your code. 
+`repo` is data from the parsed package.json file. 
+For details see [documentation](#-documentation) below. 
+
+There are also 3 HandlebarsJS helpers you can use:
+- `noscope` 
+- `nogit`
+- `typecode`
+
+`{{noscope repo.name}}` returns the repository name without the scope. Useful for links, etc.
+`{{nogit repo.repository.url}}` returns the git repository url 
+`{{{typecode type}}}` will return type names split by `|` and with appropriate anchor links. 
+<sub>**Note:** replace `type` with appropriate scoped reference.</sub>
+
+You can refer to [Handlebars docs](https://handlebarsjs.com) regarding the templating syntax.
 
 ## 📘 Documentation
 
