@@ -56,19 +56,19 @@ For details see documentation below.
   ### {{this.name}}{{#if this.isTypedef}} : {{{typecode this.type}}}{{/if}}
   {{this.description}}
   {{#unless this.isTypedef}}  
-    | Name | Type | Default | Description | 
+    | Name | Type | Default | Description |
     | ---- | ---- | ------- | ----------- |
     {{#each this.param}}
       | {{#if this.optional}}[{{/if}}{{this.name}}{{#if this.optional}}]{{/if}} | {{{typecode this.type}}} | {{this.default}} | {{this.description}} |
     {{/each}}
     {{#if this.returns}}  
       #### Returns
-      | Type | Description | 
+      | Type | Description |
       | ---- | ----------- |
       | {{this.returns.type}} | {{this.returns.description}} |
     {{/if}} 
   {{else}}
-    | Name | Type | Description | 
+    | Name | Type | Description |
     | ---- | ---- | ----------- |
     {{#each this.property}}
     | {{this.name}} | {{{typecode this.type}}} | {{this.description}} |
