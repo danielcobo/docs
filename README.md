@@ -69,74 +69,83 @@ There are also 3 HandlebarsJS helpers you can use:
 - `nogit`
 - `typecode`
 
+| Helper example | Description |
+| -------------- | ----------- |
 | `{{noscope repo.name}}` | returns repository name without the scope. Useful for links, etc. |
 | `{{nogit repo.repository.url}}` | returns the git repository url |
-| `{{{typecode type}}}` | return type names split by `|` and with appropriate anchor links. | 
+| `{{{typecode type}}}` | return type names split by `\|` and with appropriate anchor links. | 
+
 <sub>**Note:** replace `type` with appropriate scoped reference.</sub>
 
 You can refer to [Handlebars docs](https://handlebarsjs.com) regarding the templating syntax.
 
 ## 📘 Documentation
+### Definition : `Object`
 
-  ### Definition : `Object`
-  
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | description | `string` | Type/function description text |
-    | name | `string` | Type/function name |
-    | type | `string` | Type (i.e. function, method, object...) |
-    | isTypedef | `boolean` | True if typedef (else assume function) |
-    | param | [`Array.Param`](#param--object) | Function parameters |
-    | property | [`Array.Property`](#property--object) | Type/function properties |
-    | returns | [`ReturnValue`](#returnvalue--object) | Function return value |
-    | source | [`Source`](#source--object) | Type/function definition source |
-  <sub>Source:[src/parseComments.js:164](https://github.com/danielcobo/docs/src/parseComments.js?plain=1#L164)</sub>
 
-  ### ReturnValue : `Object`
-  
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | type | `string` | Data type of return value |
-    | description | `string` | Description of return value |
-  <sub>Source:[src/parseComments.js:142](https://github.com/danielcobo/docs/src/parseComments.js?plain=1#L142)</sub>
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| description | `string` | Type/function description text |
+| name | `string` | Type/function name |
+| type | `string` | Type (i.e. function, method, object...) |
+| isTypedef | `boolean` | True if typedef (else assume function) |
+| param | [`Array.Param`](#param--object) | Function parameters |
+| property | [`Array.Property`](#property--object) | Type/function properties |
+| returns | [`ReturnValue`](#returnvalue--object) | Function return value |
+| source | [`Source`](#source--object) | Type/function definition source |
 
-  ### Source : `Object`
-  
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | line | `number` | Source line number |
-    | path | `string` | Source file path |
-    | url | `string` | Relative source file url |
-  <sub>Source:[src/parseComments.js:134](https://github.com/danielcobo/docs/src/parseComments.js?plain=1#L134)</sub>
+<sub>Source:[src/parseComments.js:164](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L164)</sub>
+### ReturnValue : `Object`
 
-  ### Property : `Object`
-  Type definition property
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | name | `string` | Property name |
-    | type | `string` | Property value data type |
-    | description | `string` | Property description |
-    | optional | `boolean` | True/false if property is optional |
-  <sub>Source:[src/parseComments.js:113](https://github.com/danielcobo/docs/src/parseComments.js?plain=1#L113)</sub>
 
-  ### Param : `Object`
-  Function parameter
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | name | `string` | Parameter name |
-    | type | `string` | Argument data type |
-    | description | `string` | Parameter description |
-    | optional | `boolean` | True/false if parameter is optional |
-    | default | `*` | Default argument value |
-  <sub>Source:[src/parseComments.js:94](https://github.com/danielcobo/docs/src/parseComments.js?plain=1#L94)</sub>
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| type | `string` | Data type of return value |
+| description | `string` | Description of return value |
 
-  ### Data : `Object`
-  
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    | definition | [`Array.Definition`](#definition--object) | Definition object |
-    | repo | `Package` | Object of package.json data |
-  <sub>Source:[src/index.js:19](https://github.com/danielcobo/docs/src/index.js?plain=1#L19)</sub>
+<sub>Source:[src/parseComments.js:142](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L142)</sub>
+### Source : `Object`
+
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| line | `number` | Source line number |
+| path | `string` | Source file path |
+| url | `string` | Relative source file url |
+
+<sub>Source:[src/parseComments.js:134](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L134)</sub>
+### Property : `Object`
+Type definition property
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| name | `string` | Property name |
+| type | `string` | Property value data type |
+| description | `string` | Property description |
+| optional | `boolean` | True/false if property is optional |
+
+<sub>Source:[src/parseComments.js:113](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L113)</sub>
+### Param : `Object`
+Function parameter
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| name | `string` | Parameter name |
+| type | `string` | Argument data type |
+| description | `string` | Parameter description |
+| optional | `boolean` | True/false if parameter is optional |
+| default | `*` | Default argument value |
+
+<sub>Source:[src/parseComments.js:94](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L94)</sub>
+### Data : `Object`
+
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| definition | [`Array.Definition`](#definition--object) | Definition object |
+| repo | `Package` | Object of package.json data |
+
+<sub>Source:[src/index.js:19](https://github.com/danielcobo/docs/blob/master/src/index.js?plain=1#L19)</sub>
 
 ## 🆘 Troubleshooting
 
