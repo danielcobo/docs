@@ -94,7 +94,7 @@ You can refer to [Handlebars docs](https://handlebarsjs.com) regarding the templ
 | returns | [`ReturnValue`](#returnvalue--object) | Function return value |
 | source | [`Source`](#source--object) | Type/function definition source |
 
-<sub>Source:[src/parseComments.js:164](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L164)</sub>
+<sub>**Source:** src/parseComments.js:164](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L164)</sub>
 ### ReturnValue : `Object`
 
 
@@ -103,7 +103,7 @@ You can refer to [Handlebars docs](https://handlebarsjs.com) regarding the templ
 | type | `string` | Data type of return value |
 | description | `string` | Description of return value |
 
-<sub>Source:[src/parseComments.js:142](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L142)</sub>
+<sub>**Source:** src/parseComments.js:142](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L142)</sub>
 ### Source : `Object`
 
 
@@ -113,7 +113,7 @@ You can refer to [Handlebars docs](https://handlebarsjs.com) regarding the templ
 | path | `string` | Source file path |
 | url | `string` | Relative source file url |
 
-<sub>Source:[src/parseComments.js:134](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L134)</sub>
+<sub>**Source:** src/parseComments.js:134](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L134)</sub>
 ### Property : `Object`
 Type definition property
 
@@ -124,7 +124,7 @@ Type definition property
 | description | `string` | Property description |
 | optional | `boolean` | True/false if property is optional |
 
-<sub>Source:[src/parseComments.js:113](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L113)</sub>
+<sub>**Source:** src/parseComments.js:113](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L113)</sub>
 ### Param : `Object`
 Function parameter
 
@@ -136,7 +136,7 @@ Function parameter
 | optional | `boolean` | True/false if parameter is optional |
 | default | `*` | Default argument value |
 
-<sub>Source:[src/parseComments.js:94](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L94)</sub>
+<sub>**Source:** src/parseComments.js:94](https://github.com/danielcobo/docs/blob/master/src/parseComments.js?plain=1#L94)</sub>
 ### Data : `Object`
 
 
@@ -145,7 +145,7 @@ Function parameter
 | definition | [`Array.Definition`](#definition--object) | Definition object |
 | repo | `Package` | Object of package.json data |
 
-<sub>Source:[src/index.js:19](https://github.com/danielcobo/docs/blob/master/src/index.js?plain=1#L19)</sub>
+<sub>**Source:** src/index.js:19](https://github.com/danielcobo/docs/blob/master/src/index.js?plain=1#L19)</sub>
 
 ## 🆘 Troubleshooting
 
