@@ -1,6 +1,6 @@
 {
   "name": "@danielcobo/docs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Automate repo documentation",
   "main": "./src/index.js",
   "scripts": {
