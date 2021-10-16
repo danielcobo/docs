@@ -1,0 +1,117 @@
+# {{noscope repo.name}}
+
+{{repo.description}}
+
+## 🧭 Table of contents
+
+- [✨ Benefits](#-benefits)
+- [🎒 Requierments](#-requierments)
+- [🚀 Quickstart](#-quickstart)
+- [📘 Documentation](#-documentation)
+- [🆘 Troubleshooting](#-troubleshooting)
+- [🤝 Contributing](#-contributing)
+- [🧪 Testing](#-testing)
+- [⚖️ License](#️-license)
+
+## ✨ Benefits
+
+- [x] Boilerplates for LICENSE and README
+- [x] Customisable
+- [x] Simple handlebars template
+- [x] Much less overhead than JSDoc
+- [x] Leverages data from package.json
+
+## 🎒 Requierments
+
+To use this package you will need:
+
+- [NodeJS](https://nodejs.org/en/)
+
+## 🚀 Quickstart
+
+### Install
+
+```cli
+npm install {{repo.name}} -D
+```
+
+<sub>**Note:** In case you're wondering, **@danielcobo/** is just a [namespace scope](https://docs.npmjs.com/about-scopes/) - an NPM feature. Scopes make it easier to name modules and improve [security](https://github.blog/2021-02-12-avoiding-npm-substitution-attacks/).</sub>
+
+For details see documentation below.
+
+## 📘 Documentation
+{{#each definition}}
+
+  ### {{this.name}}{{#if this.isTypedef}} : {{{typecode this.type}}}{{/if}}
+  {{this.description}}
+  {{#unless this.isTypedef}}  
+    | Name | Type | Default | Description |
+    | ---- | ---- | ------- | ----------- |
+    {{#each this.param}}
+      | {{#if this.optional}}[{{/if}}{{this.name}}{{#if this.optional}}]{{/if}} | {{{typecode this.type}}} | {{this.default}} | {{this.description}} |
+    {{/each}}
+    {{#if this.returns}}  
+      #### Returns
+      | Type | Description |
+      | ---- | ----------- |
+      | {{this.returns.type}} | {{this.returns.description}} |
+    {{/if}} 
+  {{else}}
+    | Name | Type | Description |
+    | ---- | ---- | ----------- |
+    {{#each this.property}}
+    | {{this.name}} | {{{typecode this.type}}} | {{this.description}} |
+    {{/each}} 
+  {{/unless}}
+  <sub>Source:[{{this.source.url}}:{{this.source.line}}]({{nogit ../repo.repository.url}}/{{this.source.url}}?plain=1#L{{this.source.line}})</sub>
+{{/each}}
+
+## 🆘 Troubleshooting
+
+Insert caveats
+
+## 🤝 Contributing
+
+### Anyone can contribute
+
+Contributions come in many shapes and sizes. All are welcome.
+You can contribute by:
+
+- asking questions
+- suggesting features
+- sharing this repo with friends
+- improving documentation (even fixing typos counts 😉)
+- providing tutorials (if you do, please [let me know](https://twitter.com/danielcobocom), I would love to read them)
+- improving tests
+- contributing code (new features, performance boosts, code readability improvements..)
+
+### Rules for contributions
+
+**General guidelines:**
+
+- there are no dumb questions
+- be polite and respectful to others
+- do good
+
+**When coding remember:**
+
+- working > maintainability > performance
+- best code is no code
+- be descriptive when naming
+- keep it [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
+- do test
+
+**Contribution licence:**
+All contributions are considered to be under same [license](#license) as this repository.
+
+## 🧪 Testing
+
+**Testing suite:** [🃏 Jest](https://jestjs.io) | **Test command:** `npm test`
+
+**Mutation testing suite:** [👽 Stryker Mutator](https://stryker-mutator.io) | **Mutation test command:** `npm run mutation`
+
+If you intend to develop further or contribute code, then please ensure to write and use testing. Strive for 100% code coverage and high mutation scores. Mutation score 100 is great, but it's not always neccessary (if there are valid reasons).
+
+## ⚖️ License
+
+[MIT License]({{nogit repo.repository.url}}/blob/master/LICENSE.md)
