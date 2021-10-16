@@ -51,29 +51,32 @@ For details see documentation below.
 
 ## 📘 Documentation
 {{#each definition}}
+### {{this.name}}{{#if this.isTypedef}} : {{{typecode this.type}}}{{/if}}
+{{this.description}}
+{{#unless this.isTypedef}}  
 
-  ### {{this.name}}{{#if this.isTypedef}} : {{{typecode this.type}}}{{/if}}
-  {{this.description}}
-  {{#unless this.isTypedef}}  
-    | Name | Type | Default | Description |
-    | ---- | ---- | ------- | ----------- |
-    {{#each this.param}}
-      | {{#if this.optional}}[{{/if}}{{this.name}}{{#if this.optional}}]{{/if}} | {{{typecode this.type}}} | {{this.default}} | {{this.description}} |
-    {{/each}}
-    {{#if this.returns}}  
-      #### Returns
-      | Type | Description |
-      | ---- | ----------- |
-      | {{this.returns.type}} | {{this.returns.description}} |
-    {{/if}} 
-  {{else}}
-    | Name | Type | Description |
-    | ---- | ---- | ----------- |
-    {{#each this.property}}
-    | {{this.name}} | {{{typecode this.type}}} | {{this.description}} |
-    {{/each}} 
-  {{/unless}}
-  <sub>Source:[{{this.source.url}}:{{this.source.line}}]({{nogit ../repo.repository.url}}/{{this.source.url}}?plain=1#L{{this.source.line}})</sub>
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+{{#each this.param}}
+| {{#if this.optional}}[{{/if}}{{this.name}}{{#if this.optional}}]{{/if}} | {{{typecode this.type}}} | {{this.default}} | {{this.description}} |
+{{/each}}
+{{#if this.returns}}  
+
+#### Returns
+| Type | Description |
+| ---- | ----------- |
+| {{this.returns.type}} | {{this.returns.description}} |
+{{/if}} 
+{{else}}
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+{{#each this.property}}
+| {{this.name}} | {{{typecode this.type}}} | {{this.description}} |
+{{/each}} 
+{{/unless}}
+
+<sub>Source:[{{this.source.url}}:{{this.source.line}}]({{nogit ../repo.repository.url}}/blob/master/{{this.source.url}}?plain=1#L{{this.source.line}})</sub>
 {{/each}}
 
 ## 🆘 Troubleshooting
