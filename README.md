@@ -152,6 +152,7 @@ Function parameter
 Remember to use `run` when calling the script.   
 
 ❌ `npm docs` will fail.
+
 ✅ `npm run docs` will work.
 
 ## 🤝 Contributing
