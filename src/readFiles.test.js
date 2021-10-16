@@ -1,7 +1,5 @@
 const readFiles = require('./readFiles.js');
 const fs = require('@danielcobo/fs');
-const process = require('process');
-const path = require('path');
 
 test('Test readFiles.js', async function () {
   const path = './src/readPaths.js';
