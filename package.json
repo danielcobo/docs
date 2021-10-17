@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --collectCoverage",
     "mutation": "npx stryker run",
-    "testing": "jest --watch --collectCoverage --runInBand"
+    "testing": "jest --watch --collectCoverage --runInBand",
+    "patch": "git push && npm version patch && npm publish"
   },
   "bin": {
     "docs": "bin/docs"
