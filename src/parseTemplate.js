@@ -20,17 +20,10 @@ Handlebars.registerHelper('nogit', function (gitURL) {
  */
 module.exports = async function parseTemplate(data, templateFile) {
   const templatePath = path.join(absoluteCurrentPath, templateFile);
-  let template = await fs.read(templatePath).catch(function (err) {
-    //Throw if error is NOT a missing template
-    if (!/^ENOENT: no such file or directory, stat /.test(err.message)) {
-      throw err;
-    }
-  });
-  if (!template) {
-    const boilerplate = path.join(__dirname, '../boilerplate/', templateFile);
-    template = await fs.read(boilerplate);
-    await fs.mk(templatePath, template);
-  }
+  const boilerplatePath = path.join(__dirname, '../boilerplate/', templateFile);
+  await fs.clone(boilerplatePath, templatePath, { overwrite: false });
+
+  let template = await fs.read(templatePath);
 
   Handlebars.registerHelper('typecode', function (types) {
     if (types !== undefined) {
