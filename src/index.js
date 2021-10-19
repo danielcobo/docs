@@ -3,7 +3,7 @@ const readPaths = require('./readPaths.js');
 const readFiles = require('./readFiles.js');
 const parseComments = require('./parseComments.js');
 const parseTemplate = require('./parseTemplate.js');
-const err = require('./handleError.js');
+const err = require('@danielcobo/catcher');
 
 module.exports = async function docs() {
   //Prepare data
