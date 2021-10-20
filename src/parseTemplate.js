@@ -12,6 +12,20 @@ Handlebars.registerHelper('nogit', function (gitURL) {
     return gitURL.slice(gitURL.indexOf('+') + 1).replace(/\.git$/, '');
   }
 });
+Handlebars.registerHelper('major', function (version) {
+  if (version !== undefined) {
+    return version.replace(/[^0-9.]/g, '').split('.')[0];
+  }
+});
+Handlebars.registerHelper('minor', function (version) {
+  if (version !== undefined) {
+    return version
+      .replace(/[^0-9.]/g, '')
+      .split('.')
+      .slice(0, 2)
+      .join('.');
+  }
+});
 
 /**
  * Parse templates using data

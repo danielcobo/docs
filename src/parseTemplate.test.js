@@ -55,11 +55,33 @@ test('Test parseTemplate.js - typecode Handlebars helper', async function () {
   };
   const parsed = await parseTemplate(data, 'LICENSE.hbs');
   const expectedParsed = '`string`|`array`';
-  await fs.rm('./LICENSE.hbs');
+  expect(parsed).toStrictEqual(expectedParsed);
+});
+
+test('Test parseTemplate.js - major Handlebars helper', async function () {
+  await fs.mk('./LICENSE.hbs', '{{major repo.version}}');
+  const data = {
+    definition: [{ name: 'Definition 1' }],
+    repo: { version: '^1.x.4' },
+  };
+  const parsed = await parseTemplate(data, 'LICENSE.hbs');
+  const expectedParsed = '1';
+  expect(parsed).toStrictEqual(expectedParsed);
+});
+
+test('Test parseTemplate.js - minor Handlebars helper', async function () {
+  await fs.mk('./LICENSE.hbs', '{{minor repo.version}}');
+  const data = {
+    definition: [{ name: 'Definition 1' }],
+    repo: { version: '~1.7.x' },
+  };
+  const parsed = await parseTemplate(data, 'LICENSE.hbs');
+  const expectedParsed = '1.7';
   expect(parsed).toStrictEqual(expectedParsed);
 });
 
 test('Test parseTemplate.js - boilerplate', async function () {
+  await fs.rm('./LICENSE.hbs');
   const data = {
     definition: [{ type: 'string|array' }],
     repo: { name: '@danielcobo/testpackage' },

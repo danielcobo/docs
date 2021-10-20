@@ -64,16 +64,20 @@ The data passed to templates consists of :
 
 For details see [documentation](#-documentation) below. 
 
-There are also 3 HandlebarsJS helpers you can use:
+There are also 5 HandlebarsJS helpers you can use:
 - `noscope` 
 - `nogit`
+- `major`
+- `minor`
 - `typecode`
 
 | Helper example | Description |
 | -------------- | ----------- |
 | `{{noscope repo.name}}` | returns repository name without the scope. Useful for links, etc. |
 | `{{nogit repo.repository.url}}` | returns the git repository url |
-| `{{{typecode type}}}` | return type names split by `\|` and with appropriate anchor links. | 
+| `{{major repo.version}}` | returns major semver version (example: 1) | 
+| `{{minor repo.version}}` | returns minor semver version (example: 1.0) | 
+| `{{{typecode type}}}` | returns type names split by `\|` and with appropriate anchor links. | 
 
 <sub>**Note:** replace `type` with appropriate scoped reference.</sub>
 
@@ -187,7 +191,7 @@ You can contribute by:
 - do test
 
 **Contribution licence:**
-All contributions are considered to be under same [license](#license) as this repository.
+All contributions are considered to be under same [license](#️-license) as this repository.
 
 ## 🧪 Testing
 
