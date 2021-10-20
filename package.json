@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@danielcobo/err": "^1.0.0",
-    "@danielcobo/fs": "^1.2.1",
+    "@danielcobo/fs": "^1.2.2",
     "chalk": "^4.1.2",
     "comment-parser": "^1.2.4",
     "handlebars": "^4.7.7",
