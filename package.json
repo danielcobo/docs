@@ -29,7 +29,7 @@
     "jest": "^27.3.1"
   },
   "dependencies": {
-    "@danielcobo/err": "^1.0.6",
+    "@danielcobo/err": "^1.0.7",
     "@danielcobo/fs": "^1.2.2",
     "chalk": "^4.1.2",
     "comment-parser": "^1.2.4",
