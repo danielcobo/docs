@@ -216,7 +216,13 @@ module.exports = async function parseComments(files, packageName) {
         } else {
           impliedName.push(comment);
           if (filename.replace(/\.[^.]*$/, '') === 'index') {
-            name = packageName + '()';
+            if (typeof packageName !== 'string') {
+              throw new TypeError(`
+Error: parseComments(): packageName
+Expected: string
+Received: ${typeof packageName}`);
+            }
+            name = packageName.slice(packageName.indexOf('/') + 1) + '()';
             type = 'function';
           } else {
             name = '.' + filename.replace(/\.[^.]+$/, '') + '()';

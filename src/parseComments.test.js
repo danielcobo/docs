@@ -160,14 +160,48 @@ test('Test parseComments.js - 1 implied name max.', async function () {
     */
   `;
   let errMessage;
+  await parseComments(
+    [{ path: './index.js', content: content }],
+    'MyPackage'
+  ).catch(function (err) {
+    errMessage = err.message;
+  });
+  expect(errMessage).toStrictEqual(`
+There can only be 1 implied name per file.
+Already implied:
+File: ./index.js
+Line: 1`);
+});
+
+test('Test parseComments.js - packagename string argument', async function () {
+  const content = `
+  /**
+   * Function description
+   * @public
+   * @param {number} num - a number
+   * @returns {number} - number of numbers
+   */
+  `;
+  let errMessage;
   await parseComments([{ path: './index.js', content: content }]).catch(
     function (err) {
       errMessage = err.message;
     }
   );
   expect(errMessage).toStrictEqual(`
-There can only be 1 implied name per file.
-Already implied:
-File: ./index.js
-Line: 1`);
+Error: parseComments(): packageName
+Expected: string
+Received: undefined`);
+});
+
+test('Test parseComments.js - packagename string argument', async function () {
+  const content = `
+  /**
+   * @typedef {Object} Score
+   * @public
+   * @property {string|number} value - score value
+   */
+  `;
+  const types = await parseComments([{ path: './index.js', content: content }]);
+  expect(types[0].property[0].type).toStrictEqual('string|number');
 });
