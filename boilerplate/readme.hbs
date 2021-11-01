@@ -50,13 +50,13 @@ const {{noscope repo.name}} = require('{{repo.name}}');
 Declare it as a global variable named {{noscope repo.name}} by including this script before any script you want to use it in:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/iife/bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/iife/{{noscope repo.name}}.min.js"></script>
 ```
 
 Or import it as an [ECMAScript module](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import):
 
 ```js
-import * as {{noscope repo.name}} from 'https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/esm/bundle.min.js';
+import * as {{noscope repo.name}} from 'https://cdn.jsdelivr.net/npm/{{repo.name}}@{{major repo.version}}/dist/esm/{{noscope repo.name}}.min.js';
 ```
 
 Also, feel free to download the file if you prefer not to use [jsdelivr](https://www.jsdelivr.com). In that case just replace the url with the relative file path.
